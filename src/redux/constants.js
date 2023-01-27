@@ -1,0 +1,5 @@
+export const GET_TRAVELS = "GET_TRAVELS";
+export const DELETE_TRAVEL = "DELETE_TRAVEL";
+export const ADD_TRAVEL = "ADD_TRAVEL";
+export const UPDATE_TRAVEL = "UPDATE_TRAVEL";
+export const GET_SINGLE_TRAVEL = "GET_SINGLE_TRAVEL";
