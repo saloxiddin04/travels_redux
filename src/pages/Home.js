@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getTravels, deleteTravel} from "../redux/actions";
-import {toast} from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getTravels, deleteTravel } from "../redux/actions";
+import { toast } from "react-toastify";
 
 function App() {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
-    const {travels} = useSelector((state) => state.data.travels)
+    const { travels } = useSelector((state) => state.data.travels)
 
     useEffect(() => {
         const fetchTravels = () => {
@@ -24,13 +24,19 @@ function App() {
     }, [])
 
     const handleDelete = (id) => {
-        dispatch(deleteTravel(id))
-        toast.error("Post deleted successfully!")
+        setLoading(true)
+        try {
+            dispatch(deleteTravel(id))
+            toast.error("Post deleted successfully!")
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     if (loading) return (
         <div className="my-3">
-            <span>Loading...</span>  
+            <span>Loading...</span>
         </div>
     )
 
@@ -41,7 +47,7 @@ function App() {
                     {travels && travels.reverse().map((travel) => (
                         <div className="col-md-4 mb-3" key={travel._id}>
                             <div className="border p-2">
-                                <img className="w-100" src={travel.image} alt={travel.title} style={{height: "200px"}}/>
+                                <img className="w-100" src={travel.image} alt={travel.title} style={{ height: "200px" }} />
                                 <h1>{travel.title}</h1>
                                 <p>{travel.desc}</p>
                                 <div className="buttons">
