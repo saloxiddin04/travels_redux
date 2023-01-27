@@ -34,6 +34,8 @@ function App() {
         }
     }
 
+    console.log(travels);
+
     if (loading) return (
         <div className="my-3">
             <span>Loading...</span>
